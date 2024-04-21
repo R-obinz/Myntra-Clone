@@ -13,6 +13,7 @@ import { Label } from "@/components/ui/label"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/toaster";
 
 const Login : React.FC = ()=>{
 
@@ -91,6 +92,8 @@ const Login : React.FC = ()=>{
         
       </CardContent>
     </Card>
+
+    <Toaster/>
         </>
     )
 }

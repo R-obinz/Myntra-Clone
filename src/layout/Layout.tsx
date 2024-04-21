@@ -6,6 +6,8 @@ import { Heart, Menu, Search, ShoppingBag, User } from "lucide-react";
 import logo from '../assets/logo-myntra-41466.png';
 import { Link, useNavigate } from "react-router-dom";
 import React from "react";
+import { toast } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/toaster";
 
 
 
@@ -28,7 +30,17 @@ const Layout : React.FC <LayoutProps> = (props:LayoutProps)=> {
     if(user){
       navigate('/cart');
     }else{
-      navigate('/login');
+      toast({
+        variant: "destructive",
+        title: "Please Login",
+        
+      
+      })
+      setTimeout(() => {
+        navigate('/login');
+      }, 500);
+
+      
     }
   }
 
@@ -102,40 +114,29 @@ const Layout : React.FC <LayoutProps> = (props:LayoutProps)=> {
           </SheetTrigger>
           <SheetContent side="left">
             <nav className="grid gap-6 text-lg font-medium">
-              {/* <Link
-                href="#"
+              <Link
+                to="/"
                 className="flex items-center gap-2 text-lg font-semibold"
               >
-                <Package2 className="h-6 w-6" />
+                 <img src={logo} alt=""  className=""/>
                 <span className="sr-only">Acme Inc</span>
               </Link>
-              <Link href="#" className="hover:text-foreground">
-                Dashboard
+              <Link to="/products" className="hover:text-foreground">
+                MEN
               </Link>
               <Link
-                href="#"
+                to="/products"
                 className="text-muted-foreground hover:text-foreground"
               >
-                Orders
+                WOMEN
               </Link>
               <Link
-                href="#"
+                to="/products"
                 className="text-muted-foreground hover:text-foreground"
               >
-                Products
+                KIDS
               </Link>
-              <Link
-                href="#"
-                className="text-muted-foreground hover:text-foreground"
-              >
-                Customers
-              </Link>
-              <Link
-                href="#"
-                className="text-muted-foreground hover:text-foreground"
-              >
-                Analytics
-              </Link> */}
+              
             </nav>
           </SheetContent>
         </Sheet>
@@ -180,7 +181,7 @@ const Layout : React.FC <LayoutProps> = (props:LayoutProps)=> {
         </div>
       </main>
     </div>
-        
+        <Toaster/>
         </>
     )
 }

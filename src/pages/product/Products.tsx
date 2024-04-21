@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { ToastAction } from "@/components/ui/toast";
+import { Toaster } from "@/components/ui/toaster";
 import { toast } from "@/components/ui/use-toast";
 import axios from "axios";
 import React from "react";
@@ -77,13 +78,18 @@ const Products: React.FC = () => {
               userId:5,
               date:formattedDate,
               products:[{productId:id,quantity:1}]
-            }) 
-    
-            toast({
-              title: "Success.",
-              description: "Product added to cart",
-              
+            }).then((res:any)=>{
+
+                setTimeout(() => {
+                    toast({
+                        title: "Success.",
+                        description: "Product added to cart",
+                        
+                      })
+                }, 500);
+               
             })
+
         }else{
           toast({
             variant: "destructive",
@@ -91,8 +97,11 @@ const Products: React.FC = () => {
             
           
           })
+          setTimeout(() => {
+            navigate('/login');
+          }, 500);
     
-          navigate('/login');
+         
           
         }
     
@@ -154,6 +163,8 @@ const Products: React.FC = () => {
                     )}
                 </PaginationContent>
             </Pagination>
+
+            <Toaster   />
         </>
     );
 };
